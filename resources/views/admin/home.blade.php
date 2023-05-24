@@ -18,6 +18,25 @@
                     {{ __('You are logged in!') }}
                 </div>
             </div>
+            <table border="5" class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            
+                @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td><a href="">Show</a></td>
+                    <td><a href="">Edit</a></td>
+                    <td><a href="">Delete</a></td>
+                </tr>
+                @endforeach
+            </table>
         </div>
     </div>
 </div>

@@ -21,6 +21,18 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Setup User Profile
+Route::get('/users/profile/', function() {
+    // Get Current Authentcated user id
+    $user = DB::select('select * from users where id = ?',[Auth::id()]);
+    return view('users.profile',['user'=>$user]);
+})->middleware('auth');
+
+
+
 Route::get('/admin/dashboard', function() {
-    return view('admin.home');
+    $users = DB::select('select * from users');
+    return view('admin.home',['users'=>$users]);
 })->middleware('auth')->middleware('isAdmin');
+
+
